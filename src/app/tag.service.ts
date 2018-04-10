@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from "@angular/http";
 import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 import  "rxjs/add/operator/map";
 import  "rxjs/add/operator/catch";
 import {HttpClient} from '@angular/common/http';
@@ -19,7 +20,19 @@ export class TagService {
   constructor(private http:HttpClient){
 
   }
-  getAll(){
-    return this.http.get<Tag>('http://doron.shieldiotcloud.com:9000/api/tag/get?appId=1');
+  getAll(): Observable<Tag> {
+    // return Observable.throw(new Error('HTTP 500')).catch(err => {
+    //   console.error(err);
+    //   return Observable.of({});
+    // });
+
+   return this.http.get<Tag[]>('http://doron.shieldiotcloud.com:9000/api/tag/get', {
+      params: {
+        appId: '1'
+      }
+    }).catch(err => {
+      console.log(err);
+      return Observable.throw(err);
+    });
   }
 }

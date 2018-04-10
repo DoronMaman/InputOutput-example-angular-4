@@ -26,14 +26,14 @@ export class ChildComponent implements OnInit {
          console.log(tags)
         this.newTags=tags;
          console.log("New Tag %o", this.newTags);
-       },
-       (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          console.log("Client-side error occured.");
-        } else {
-          console.log("Server-side error occured.");
-        }
-      }
+       }
+      //  (err: HttpErrorResponse) => {
+      //   if (err.error instanceof Error) {
+      //     console.log("Client-side error occured.");
+      //   } else {
+      //     console.log("Server-side error occured.");
+      //   }
+      // }
      )
  
  }
